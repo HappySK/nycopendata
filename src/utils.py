@@ -48,3 +48,10 @@ def evaluate_model(X_train, X_test, y_train, y_test, models, params):
     except Exception as e:
         logging.info("Invalid Evaluate Model")
         raise CustomException("Invalid Evaluate Model", e, sys)
+
+def load_object(file_path):
+    try:
+        with open(file_path, "wb") as file_obj:
+            return dill.load(file_obj)
+    except Exception as e:
+        raise CustomException("Invalid Load Value", e, sys)
