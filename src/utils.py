@@ -2,7 +2,7 @@ import os
 import sys
 import numpy as np
 import pandas as pd
-import dill
+import dill, yaml, argparse
 
 from src.exception import CustomException
 from src.logger import logging
@@ -55,3 +55,15 @@ def load_object(file_path):
             return dill.load(file_obj)
     except Exception as e:
         raise CustomException("Invalid Load Value", e, sys)
+
+
+def get_yaml_config(file_name):
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("dataset")
+    args = parser.parse_args()
+    dataset = args.dataset
+
+    with open(file_name) as stream:
+        input_config = yaml.safe_load(stream)
+    return input_config[dataset]
