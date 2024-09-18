@@ -12,10 +12,11 @@ from src.exception import CustomException
 from src.logger import logging
 from sklearn.pipeline import Pipeline
 
-from src.utils import save_object
+from src.utils import save_object, get_yaml_config
 @dataclass
 class DataTransformatonConfig:
-    preprocessor_obj_file_path = os.path.join("artifacts", "preprocessor.pkl")
+    config = get_yaml_config("src/config/model_config.yaml")
+    preprocessor_obj_file_path = config["preprocessor_file_path"]
 
 class DataTransformation:
     def __init__(self):
