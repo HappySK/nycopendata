@@ -67,3 +67,12 @@ def get_yaml_config(file_name):
     with open(file_name) as stream:
         input_config = yaml.safe_load(stream)
     return input_config[dataset]
+
+def get_columns(file_name="src/config/model_config.yaml"):
+    config = get_yaml_config(file_name)
+
+    numerical_columns = config["columns"]["numerical"]
+    categorical_columns = config["columns"]["categorical"]
+    target_column = config["columns"]["target"]
+
+    return numerical_columns, categorical_columns, target_column
