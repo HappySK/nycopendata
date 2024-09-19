@@ -11,7 +11,7 @@ app = application
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('stud_perf_predictor.html')
 
 @app.route('/predictdata', methods=['GET', 'POST'])
 def predict_datapoint():
@@ -33,7 +33,7 @@ def predict_datapoint():
 
         pred_pipeline = PredictPipeline()
         results = pred_pipeline.predict(pred_df)
-        return render_template("home.html", results=results[0])
+        return render_template("stud_perf_predictor.html", results=results[0])
 
 if __name__ == "__main__":
     app.run("0.0.0.0", debug=True)
