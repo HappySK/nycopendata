@@ -28,7 +28,7 @@ def predict_datapoint():
 
         form_data_df = pd.DataFrame(form_data)
 
-        mlflow.set_tracking_uri("http://127.0.0.1:8080")
+        mlflow.set_tracking_uri("http://0.0.0.0:8080")
         loaded_model = mlflow.pyfunc.load_model(model_uri=f"models:/stud_perf_regressor/latest")
 
         # Use the abstract function in FastTextWrapper to fetch the trained model.
@@ -37,4 +37,4 @@ def predict_datapoint():
         return render_template("home.html", results=f"Student's Estimated Math Score is {results[0]}")
 
 if __name__ == "__main__":
-    app.run("127.0.0.1")
+    app.run("0.0.0.0")
