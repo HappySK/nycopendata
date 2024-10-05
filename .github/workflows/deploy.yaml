@@ -13,7 +13,7 @@ jobs:
 
       - name: Generate SSH Key
         run: |
-          ssh-keygen -t rsa -N ''
+          ssh-keygen -t rsa -N '' -f /home/runner/.ssh/id_rsa
 
       - uses: azure/login@v2
         with:
