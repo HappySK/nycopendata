@@ -5,8 +5,8 @@ on:
     branches: main
 
 jobs:
-  terraformSetup:
-    name: Terraform Setup
+  deploy:
+    name: Deploy into Azure
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,9 +24,14 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-            
-      - name: Terraform Format
-        run: terraform fmt -check
+        env:
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+      - name: Terraform Validate
+        run: terraform validate
 
       - name: Terraform Plan
         run: terraform plan -input=false
