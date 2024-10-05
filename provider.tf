@@ -8,10 +8,6 @@ terraform {
       version = "~>3.93.0"
     }
   }
-  backend "azurerm" {
-      container_name       = "terraform"
-      key                  = "terraform.tfstate"
-  }
 }
 
 provider "azurerm" {
