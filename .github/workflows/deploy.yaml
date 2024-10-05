@@ -35,9 +35,6 @@ jobs:
       - name: Terraform Init
         run: terraform init -backend-config=tf-backend.hcl
 
-      - name: Import Azure Resource Group
-        run: terraform import azurerm_resource_group.k8s ${{ secrets.AZURE_RESOURCE_ID }}
-
       - name: Terraform Validate
         run: terraform validate
 
