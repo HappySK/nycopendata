@@ -19,9 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Azure login
-        uses: azure/login@v1.4.6
-        env:
-          client-id: ${{ env.TF_VAR_aks_service_principal_app_id }}
-          tenant-id: ${{ env.tenant }}
-          subscription-id: ${{ env.subscription_id }}
+      - uses: azure/login@v2
+        with:
+          creds: '{"clientId":"${{ secrets.aks_service_principal_app_id }}","clientSecret":"${{ secrets.aks_service_principal_client_secret }}","subscriptionId":"${{ secrets.subscription_id }}","tenantId":"${{ secrets.tenant_id }}"}'
