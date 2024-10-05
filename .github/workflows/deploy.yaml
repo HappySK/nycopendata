@@ -4,15 +4,6 @@ on:
   push:
     branches: main
 
-env:
-  TF_VAR_resource_group_location: ${{ secrets.resource_group_location }}
-  TF_VAR_resource_group_name: ${{ secrets.resource_group_name }}
-  TF_VAR_aks_service_principal_app_id: ${{ secrets.aks_service_principal_app_id }}
-  TF_VAR_aks_service_principal_client_secret: ${{ secrets.aks_service_principal_client_secret }}
-  KUBECONFIG: ${{ secrets.KUBECONFIG }}
-  tenant: ${{ secrets.tenant }}
-  subscription_id: ${{ secrets.subscription_id }}
-
 jobs:
   azLogin:
     runs-on: ubuntu-latest
