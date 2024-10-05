@@ -76,4 +76,4 @@ jobs:
         uses: Azure/k8s-deploy@v4
         with:
           action: deploy
-          manifests: [flask_pod.yaml, mlflow_pod.yaml]
+          manifests: flask_pod.yaml
