@@ -4,6 +4,12 @@ on:
   push:
     branches: main
 
+env:
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+
 jobs:
   deploy:
     name: Deploy into Azure
@@ -27,11 +33,6 @@ jobs:
 
       - name: Import Azure Resource Group
         run: terraform import azurerm_resource_group.k8s ${{ secrets.AZURE_RESOURCE_ID }}
-        env:
-          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
 
       - name: Terraform Validate
         run: terraform validate
