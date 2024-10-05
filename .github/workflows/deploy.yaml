@@ -15,7 +15,7 @@ env:
   TF_VAR_aks_service_principal_client_secret: ${{ secrets.AZURE_CLIENT_SECRET }}
 
 jobs:
-  deploy:
+  tf_deploy:
     name: Deploy into Azure
     runs-on: ubuntu-latest
     steps:
@@ -43,3 +43,37 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+
+  deploy_to_aks:
+    runs-on: ubuntu-latest
+    needs: [ tf_deploy ]
+    steps:
+      # Checks out the repository this file is in
+      - uses: actions/checkout@v4
+
+      # Logs in with your Azure credentials
+      - uses: azure/login@v2
+        with:
+          creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
+
+      # Use kubelogin to configure your kubeconfig for Azure auth
+      - name: Set up kubelogin for non-interactive login
+        uses: azure/use-kubelogin@v1
+        with:
+          kubelogin-version: 'v0.0.25'
+
+      # Retrieves your Azure Kubernetes Service cluster's kubeconfig file
+      - name: Get K8s context
+        uses: azure/aks-set-context@v3
+        with:
+          resource-group: ${{ vars.RG_NAME }}
+          cluster-name: k8sguru
+          admin: 'false'
+          use-kubelogin: 'true'
+
+      # Deploys application based on given manifest file
+      - name: Deploys application
+        uses: Azure/k8s-deploy@v4
+        with:
+          action: deploy
+          manifests: [flask_pod.yaml, mlflow_pod.yaml]
