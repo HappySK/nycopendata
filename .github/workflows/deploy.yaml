@@ -21,7 +21,7 @@ jobs:
 
       - name: Azure login
         uses: azure/login@v1.4.6
-        with:
+        env:
           client-id: ${{ env.TF_VAR_aks_service_principal_app_id }}
           tenant-id: ${{ env.tenant }}
           subscription-id: ${{ env.subscription_id }}
