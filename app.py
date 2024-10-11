@@ -1,11 +1,13 @@
 from flask import Flask, request, render_template
 import pandas as pd
 import mlflow
+from os import environ
 
 
 application = Flask(__name__,  template_folder='student_performance/frontend')
 
 app = application
+mlflow_tracking_uri = environ["MLFLOW_TRACKING_URI"]
 
 @app.route('/')
 def index():
@@ -28,7 +30,7 @@ def predict_datapoint():
 
         form_data_df = pd.DataFrame(form_data)
 
-        mlflow.set_tracking_uri("http://0.0.0.0:8080")
+        mlflow.set_tracking_uri(mlflow_tracking_uri)
         loaded_model = mlflow.pyfunc.load_model(model_uri=f"models:/stud_perf_regressor/latest")
 
         # Use the abstract function in FastTextWrapper to fetch the trained model.
@@ -37,4 +39,4 @@ def predict_datapoint():
         return render_template("home.html", results=f"Student's Estimated Math Score is {results[0]}")
 
 if __name__ == "__main__":
-    app.run("0.0.0.0")
+    app.run(host='0.0.0.0', port=5000)
