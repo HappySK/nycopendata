@@ -1,6 +1,6 @@
 experiment:
   name: "student_performance_gb_regressor"
-  tracking_uri: "http://127.0.0.1:8080"
+  tracking_uri: "http://mlflow.skdesk.home"
   artifact_location: "./metadata/mlflow/mlartifacts"
 
 # Set the registry server URI. This property is especially useful if you have a registry
