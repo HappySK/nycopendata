@@ -1,9 +1,10 @@
 FROM python:3.7-slim-buster
-WORKDIR /nycopendata
-COPY . /nycopendata
+WORKDIR frontend
+COPY requirements.txt .
+COPY frontend .
 
 RUN apt update -y
 
-RUN pip install -r requirements.txt
+RUN pip install flask pandas mlflow
 EXPOSE 5000
 ENTRYPOINT ["python3", "app.py"]
