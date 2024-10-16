@@ -18,3 +18,6 @@
 /terraform.tfstate
 /terraform.tfstate.backup
 /.terraform/
+/diabetics/mlruns/0/meta.yaml
+/diabetics/notebooks/.ipynb_checkpoints/eda-checkpoint.ipynb
+/diabetics/notebooks/.ipynb_checkpoints/jupyter-checkpoint.ipynb
