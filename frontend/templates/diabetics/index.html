@@ -1,0 +1,249 @@
+<html>
+<head>
+  <title>Page with a form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet"></link>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        html {
+  background: url('https://images.pexels.com/photos/7598019/pexels-photo-7598019.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  opacity: 0.8;
+}
+
+body {
+  text-align: center;
+}
+
+#title {
+  text-align: center;
+  font-family: 'Open+Sans';
+  font-size: 40px;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+#description {
+  text-align: center;
+  margin: 5px 0 40px;
+  font-size: 18px;
+}
+
+#survey-form {
+  display: inline-block;
+  padding: 30px 30px;
+  width: 500px;
+  margin-bottom: 60px;
+  padding: 0 40px 0 40px;
+  background-color: hsl(260, 90%, 90%);
+  border: 1px solid black;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+#name-label,
+#email-label,
+#number-label {
+  font-size: 20px;
+  font-family: arial;
+  margin: 20px 0 7px 0;
+  text-align: left;
+  vertically-align: center;
+}
+
+#name,
+#email,
+#number {
+  padding-bottom: 15px;
+  font-size: 20px;
+  font-family: arial;
+}
+
+#dropdown {
+  width: 100%;
+  font-size: 20px;
+  font-family: arial;
+  margin: 20px 0 7px 0;
+}
+
+#dropdown {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 0;
+}
+
+.container2 {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+input[type='radio'] {
+  transform: scale(1.5);
+  margin: 0 15px 15px 0;
+}
+
+p {
+  font-size: 19px;
+  font-family: arial;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.container3 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+#dropdown2 {
+  width: 100%;
+  font-size: 19px;
+  font-family: arial;
+  margin: 10px 0 10px 0;
+  text-align: left;
+}
+
+#dropdn2 {
+  height: 36px;
+  margin-bottom: 15px;
+}
+
+.container4 {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-family: arial;
+}
+
+input[type='checkbox'] {
+  transform: scale(1.5);
+  text-align: left;
+  margin-bottom: 13px;
+  margin-right: 7px;
+  }
+
+.container5 {
+  font-size: 18px;
+  font-family: arial;
+  text-align: left;
+  margin: 15px 0 20px 0;
+}
+
+input[type='submit'] {
+  width: 100%;
+  height: 35px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  color: hsl(1, 100%, 100%);
+  background-color: rgb(50, 90, 100);
+  border-color: rgb(50, 90, 100);
+}
+
+#submit:hover {
+  background-color: rgb(50, 50, 50);
+  border-color: rgb(50, 50, 50);
+}
+    </style>
+</head>
+<body>
+  <div>
+    <h1 id='title'>Diabetes Check
+    </h1>
+      <p id="description">
+        Please fill the symptoms to see the possibilities of having diabetes
+      </p>
+  </div>
+<h2>
+      {{results}}
+  </h2>
+  <form id="survey-form" action="{{ url_for('predict_diabetics')}}" method="post">
+    <div class='container'>
+    <label id='number-label' for='age'>Age</label>
+    <input id='number' type='number' name='age' min='10' max='99' placeholder='99'>
+   </div>
+
+    <!-- Radio Buttons -->
+   <div class='container2'>
+    <p>Gender</p>
+    <label for="male"><input id="male" type="radio" name="gender" value='Male'>Male</label>
+    <label for="female"><input id="female" type="radio" name="gender" value='Female'>Female</label>
+  </div>
+   <div class='container2'>
+    <p>Polyuria</p>
+    <label for="polyuria_yes"><input id="polyuria_yes" type="radio" name="polyuria" value='Yes'>Yes</label>
+    <label for="polyuria_no"><input id="polyuria_no" type="radio" name="polyuria" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>polydipsia</p>
+    <label for="polydipsia_yes"><input id="polydipsia_yes" type="radio" name="polydipsia" value='Yes'>Yes</label>
+    <label for="polydipsia_no"><input id="polydipsia_no" type="radio" name="polydipsia" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Sudden Weight Loss</p>
+    <label for="sudden_weight_loss_yes"><input id="sudden_weight_loss_yes" type="radio" name="sudden_weight_loss" value='Yes'>Yes</label>
+    <label for="sudden_weight_loss_no"><input id="sudden_weight_loss_no" type="radio" name="sudden_weight_loss" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Weakness</p>
+    <label for="weakness_yes"><input id="weakness_yes" type="radio" name="weakness" value='Yes'>Yes</label>
+    <label for="weakness_no"><input id="weakness_no" type="radio" name="weakness" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Polyphagia</p>
+    <label for="polyphagia_yes"><input id="polyphagia_yes" type="radio" name="polyphagia" value='Yes'>Yes</label>
+    <label for="polyphagia_no"><input id="polyphagia_no" type="radio" name="polyphagia" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Genital Thrush</p>
+    <label for="genital_thrush_yes"><input id="genital_thrush_yes" type="radio" name="genital_thrush" value='Yes'>Yes</label>
+    <label for="genital_thrush_no"><input id="genital_thrush_no" type="radio" name="genital_thrush" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Visual Blurring</p>
+    <label for="visual_blurring_yes"><input id="visual_blurring_yes" type="radio" name="visual_blurring" value='Yes'>Yes</label>
+    <label for="visual_blurring_no"><input id="visual_blurring_no" type="radio" name="visual_blurring" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Itching</p>
+    <label for="itching_yes"><input id="itching_yes" type="radio" name="itching" value='Yes'>Yes</label>
+    <label for="itching_no"><input id="itching_no" type="radio" name="itching" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Irritability</p>
+    <label for="irritability_yes"><input id="irritability_yes" type="radio" name="irritability" value='Yes'>Yes</label>
+    <label for="irritability_no"><input id="irritability_no" type="radio" name="irritability" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Delayed Healing</p>
+    <label for="delayed_healing_yes"><input id="delayed_healing_yes" type="radio" name="delayed_healing" value='Yes'>Yes</label>
+    <label for="delayed_healing_no"><input id="delayed_healing_no" type="radio" name="delayed_healing" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Partial Paresis</p>
+    <label for="partial_paresis_yes"><input id="partial_paresis_yes" type="radio" name="partial_paresis" value='Yes'>Yes</label>
+    <label for="partial_paresis_no"><input id="partial_paresis_no" type="radio" name="partial_paresis" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Muscle Stiffness</p>
+    <label for="muscle_stiffness_yes"><input id="muscle_stiffness_yes" type="radio" name="muscle_stiffness" value='Yes'>Yes</label>
+    <label for="muscle_stiffness_no"><input id="muscle_stiffness_no" type="radio" name="muscle_stiffness" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Alopecia</p>
+    <label for="alopecia_yes"><input id="alopecia_yes" type="radio" name="alopecia" value='Yes'>Yes</label>
+    <label for="alopecia_no"><input id="alopecia_no" type="radio" name="alopecia" value='No'>No</label>
+  </div>
+   <div class='container2'>
+    <p>Obesity</p>
+    <label for="obesity_yes"><input id="obesity_yes" type="radio" name="obesity" value='Yes'>Yes</label>
+    <label for="obesity_no"><input id="obesity_no" type="radio" name="obesity" value='No'>No</label>
+  </div>
+<!-- submit -->
+  <input id='submit' type="submit" value="Submit">
+  </form>
+  </body>
+ </html>

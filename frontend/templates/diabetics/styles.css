@@ -1,0 +1,143 @@
+html {
+  background: url('https://images.pexels.com/photos/7598019/pexels-photo-7598019.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  opacity: 0.8;
+}
+
+body {
+  text-align: center;
+}
+
+#title {
+  text-align: center;
+  font-family: 'Open+Sans';
+  font-size: 40px;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+#description {
+  text-align: center;
+  margin: 5px 0 40px;
+  font-size: 18px;
+}
+
+#survey-form {
+  display: inline-block;
+  padding: 30px 30px;
+  width: 500px;
+  margin-bottom: 60px;
+  padding: 0 40px 0 40px;
+  background-color: hsl(260, 90%, 90%);
+  border: 1px solid black;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+#name-label,
+#email-label,
+#number-label {
+  font-size: 20px;
+  font-family: arial;
+  margin: 20px 0 7px 0;
+  text-align: left;
+  vertically-align: center;
+}
+
+#name,
+#email,
+#number {
+  padding-bottom: 15px;
+  font-size: 20px;
+  font-family: arial;
+}
+
+#dropdown {
+  width: 100%;
+  font-size: 20px;
+  font-family: arial;
+  margin: 20px 0 7px 0;
+}
+
+#dropdown {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 0;
+}
+
+.container2 {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+input[type='radio'] {
+  transform: scale(1.5);
+  margin: 0 15px 15px 0;
+}
+
+p {
+  font-size: 19px;
+  font-family: arial;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.container3 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+#dropdown2 {
+  width: 100%;
+  font-size: 19px;
+  font-family: arial;
+  margin: 10px 0 10px 0;
+  text-align: left;
+}
+
+#dropdn2 {
+  height: 36px;
+  margin-bottom: 15px;
+}
+
+.container4 {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-family: arial;
+}
+
+input[type='checkbox'] {
+  transform: scale(1.5);
+  text-align: left;
+  margin-bottom: 13px;
+  margin-right: 7px;
+  }
+
+.container5 {
+  font-size: 18px;
+  font-family: arial;
+  text-align: left;
+  margin: 15px 0 20px 0;
+}
+
+input[type='submit'] {
+  width: 100%;
+  height: 35px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  color: hsl(1, 100%, 100%);
+  background-color: rgb(50, 90, 100);
+  border-color: rgb(50, 90, 100);
+}
+
+#submit:hover {
+  background-color: rgb(50, 50, 50);
+  border-color: rgb(50, 50, 50);
+}
